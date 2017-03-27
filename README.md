@@ -1,2 +1,1 @@
-# terraform-container
-Dockerfile to build terraform container
+``` docker run -it -v <path-to-terraform-repo>:/terraform:rw ```
