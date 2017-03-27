@@ -1,25 +1,11 @@
-FROM ubuntu
+FROM hashicorp/terraform:0.8.5
 
-ENV DEBIAN_FRONTEND=noninteractive
+RUN apk update
+RUN apk add --update alpine-sdk && apk add --update python && apk add --update nodejs && apk add --update jq && apk add --update openntpd && apk add --update bash && apk add --update findutils && apk add --update coreutils
+RUN rm -rf /var/cache/apk/*
 
-RUN apt-get update \
-    && apt-get install -y jq curl build-essential git
-
-WORKDIR /usr/local/go
-
-RUN curl -L https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz \
-| tar xz --strip-components=1
-
-ENV PATH="${PATH}:/usr/local/go/bin:/root/go/bin"
-
-WORKDIR /usr/local/go/src/github.com/hashicorp/terraform
-
-RUN curl -L $(curl -s https://api.github.com/repos/hashicorp/terraform/tags \
-| jq -r '.[] | select(.name=="v0.8.5") | .tarball_url') \
-| tar xz --strip-components=1
-
-RUN go get -v golang.org/x/tools/cmd/stringer
+RUN npm install -g azure-cli && azure telemetry --disable
 
 WORKDIR /terraform
 
-CMD ["/bin/bash"]
+ENTRYPOINT ["/bin/sh"]
