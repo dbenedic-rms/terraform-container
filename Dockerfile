@@ -1,4 +1,4 @@
-FROM hashicorp/terraform:0.8.5
+FROM hashicorp/terraform:0.9.3
 
 RUN apk update
 RUN apk add --update alpine-sdk && apk add --update python && apk add --update nodejs && apk add --update jq && apk add --update openntpd && apk add --update bash && apk add --update findutils && apk add --update coreutils
