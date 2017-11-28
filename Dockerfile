@@ -1,23 +1,23 @@
-FROM hashicorp/terraform:0.9.11
+FROM hashicorp/terraform:0.10.8
 
 RUN apk update
 RUN apk add --update alpine-sdk \ 
-    && apk add --update python2 \
-    && apk add --update python2-dev \
-    && apk add --update nodejs \
-    && apk add --update jq \
-    && apk add --update openntpd \
-    && apk add --update bash \
-    && apk add --update findutils \ 
-    && apk add --update coreutils \
-    && apk add --update openssl \
-    && apk add --update openssl-dev \
-    && apk add --update libffi \
-    && apk add --update libffi-dev \
-    && apk add --update py2-pip \
-    && pip install --update pip \
-    && apk add --update py2-jinja2 \
-    && apk add --update py2-yaml
+    && apk add python2 \
+    && apk add python2-dev \
+    && apk add nodejs \
+    && apk add jq \
+    && apk add openntpd \
+    && apk add bash \
+    && apk add findutils \ 
+    && apk add coreutils \
+    && apk add openssl \
+    && apk add openssl-dev \
+    && apk add libffi \
+    && apk add libffi-dev \
+    && apk add py2-pip \
+    && pip install pip \
+    && apk add py2-jinja2 \
+    && apk add py2-yaml
 
 RUN rm -rf /var/cache/apk/*
 
